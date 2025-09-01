@@ -37,15 +37,7 @@ This project demonstrates **full-stack skills** with Next.js (App Router), API r
 
 ---
 
-## 🖼️ Screenshots
 
-> _(Replace these with real screenshots of your app UI)_
-
-![Upload & Analysis UI](./public/screenshot-upload.png)  
-*Upload your resume and paste a job description.*
-
-![AI Feedback](./public/screenshot-feedback.png)  
-*AI-powered JSON feedback displayed clearly in the dashboard.*
 
 ---
 
