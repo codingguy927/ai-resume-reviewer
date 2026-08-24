@@ -26,7 +26,6 @@ async function parsePdfToText(buffer) {
   const uint8Array = new Uint8Array(buffer);
   const loadingTask = pdfjs.getDocument({
     data: uint8Array,
-    disableWorker: true,
     useSystemFonts: true,
     stopAtErrors: false,
     verbosity: 0,
@@ -36,8 +35,12 @@ async function parsePdfToText(buffer) {
   let textContent = "";
   for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i);
-    const content = await page.getTextContent({ disableCombineTextItems: false });
-    textContent += content.items.map((item) => item.str).join(" ") + "\n";
+    const content = await page.getTextContent();
+
+textContent +=
+  content.items
+    .map((item) => ("str" in item ? item.str : ""))
+    .join(" ") + "\n";
   }
   return textContent.trim();
 }

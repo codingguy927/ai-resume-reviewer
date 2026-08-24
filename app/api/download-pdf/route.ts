@@ -2,7 +2,7 @@ import PDFDocument from "pdfkit";
 import { Readable } from "stream";
 
 let lastFeedback = null;
-export function saveFeedback(fb) {
+function saveFeedback(fb) {
   lastFeedback = fb;
 }
 
@@ -159,7 +159,9 @@ export async function GET() {
 
   doc.end();
 
-  return new Response(stream, {
+  const webStream = Readable.toWeb(stream) as ReadableStream<Uint8Array>;
+
+return new Response(webStream, {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": "attachment; filename=resume-feedback.pdf",

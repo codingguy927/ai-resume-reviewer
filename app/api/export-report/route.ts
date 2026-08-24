@@ -50,7 +50,7 @@ function drawTwoColumns(doc, text, { margin = 48, gutter = 18, top = 84, bottom 
 async function makePdfBuffer({ candidateName, jobTitle, resumeVersion, analysis, jobDescription, resumeText }) {
   const { default: PDFDocument } = await import("pdfkit");
 
-  return await new Promise((resolve, reject) => {
+  return await new Promise<Buffer>((resolve, reject) => {
     const doc = new PDFDocument({ size: "A4", margin: 48, autoFirstPage: true });
     const chunks = [];
     doc.on("data", (c) => chunks.push(c));
@@ -134,7 +134,7 @@ export async function POST(req) {
     });
 
     const filename = `resume-fit-report-${Date.now()}.pdf`;
-    return new NextResponse(pdf, {
+    return new NextResponse(new Uint8Array(pdf), {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",

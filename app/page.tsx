@@ -187,8 +187,8 @@ const BUCKETS = {
   "Internship/Education": [/intern|computer-science|degree|university|gcu/],
 };
 
-const bucketize = (words) => {
-  const out = {};
+const bucketize = (words: string[]): Record<string, string[]> => {
+  const out: Record<string, string[]> = {};
   for (const label of Object.keys(BUCKETS)) out[label] = [];
   for (const w of words) {
     let placed = false;
