@@ -2,7 +2,7 @@ import PDFDocument from "pdfkit";
 import { Readable } from "stream";
 
 let lastFeedback = null;
-export function saveFeedback(fb) {
+function saveFeedback(fb) {
   lastFeedback = fb;
 }
 
